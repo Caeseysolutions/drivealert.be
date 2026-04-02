@@ -1,86 +1,66 @@
-# DriveAlert — Changelog
-
-All notable changes to drivealert.eu and drivealert.be are documented here.
-
----
-
-## [2.2.0] — 2026-03-20
-
-### Added — SEO landing pages batch
-6 new targeted landing pages to drive search traffic and affiliate conversions:
-
-| File | Language | Target keyword | Market |
-|---|---|---|---|
-| `co-driver-no2-review.html` | EN | "ooono co-driver no2 review" | All markets |
-| `elektronische-parkscheibe.html` | DE | "elektronische parkscheibe auto" | Germany |
-| `ooono-belgie.html` | NL | "ooono belgie flitsmelder" | Belgium |
-| `ooono-nederland.html` | NL | "ooono nederland flitsmelder" | Netherlands |
-| `avertisseur-radar-france.html` | FR | "avertisseur radar sans abonnement" | France |
-| `parkscheibe-belgien.html` | DE | "parkscheibe belgien elektronisch" | Belgium DE |
-
-Each page includes:
-- Correct geo-routed affiliate links per market
-- Structured data / JSON-LD for SEO
-- Internal links back to index.html
-- Affiliate disclosure footer
-- Mobile responsive
-
-### Notes
-- Pages 3 + 6 (ooono-belgie, parkscheibe-belgien) deploy to drivealert.be repo
-- Pages 1, 2, 4, 5 deploy to drivealert.eu repo
-- All affiliate links confirmed live and correct per market
+# CHANGELOG — Caeseysolutions/drivealert.be
+# File: CHANGELOG.md
+# Repo: https://github.com/Caeseysolutions/drivealert.be
+# Live URL: https://drivealert.be
 
 ---
 
-## [2.1.0] — 2026-03-20
+## VERSION REGISTRY
 
-### Added
-- Geo-routing — automatic country detection via ipapi.co (free, no API key)
-- NL/BE visitors → Amazon.nl (CO-DRIVER ★10% commission)
-- FR visitors → Amazon.fr
-- GB/IE visitors → Amazon.co.uk
-- DE/AT/CH → Amazon.de (default)
-- Manual language selection always overrides geo-detection
-- Silent 3-second timeout fallback
-
-### Fixed
-- Revenue leak fixed — previously ALL visitors hit Amazon.de regardless of country
-- NL/BE visitors were missing the 10% CO-DRIVER commission
+| Version | Date | File deployed | Commit message | Deployed by |
+|---|---|---|---|---|
+| v1 | 2 Apr 2026 | drivealert_be_index_v1_02apr2026.html → index.html | drivealert.be index v1 - full multilingual BE version | Kristof |
 
 ---
 
-## [2.0.0] — 2026-02-xx
+## v1 — 2 April 2026
+**File:** drivealert_be_index_v1_02apr2026.html → rename to index.html before uploading
+**Commit message:** `drivealert.be index v1 - full multilingual BE version`
+**Keys per language:** 185
 
-### Added
-- Full multilingual support EN / NL / FR / DE
-- Legal status tables by country and region
-- Media gallery with OOONO official product images and videos
-- How-it-works tab switcher
-- FAQ accordion
-- Markets section
-- Privacy Policy modal
-- Disclaimer modal
-- Nextbase 622GW dashcam section
-- Structured data / JSON-LD
-- hreflang tags for multilingual SEO
+### What this file is
+Full site — same as drivealert.eu v6 but adapted for Belgian domain:
+- Title: DriveAlert België
+- Canonical: points to drivealert.eu (Google deduplication — correct)
+- hreflang: NL + FR for .be, x-default → .eu
+- OG URL: drivealert.be
+- Meta description: Belgian-focused (NL)
+- Geo-routing: BE visitors → Amazon.nl (NL affiliate tag, ★10% CO-DRIVER)
+- Translations: 185 keys in EN/NL/FR/DE — all validated, zero syntax errors
+- ft-tag NL: "Belgische bestuurders" (not European)
+- ft-tag FR: "conducteurs belges" (not européens)
 
----
-
-## [1.0.0] — 2025-xx-xx
-
-### Added
-- Initial DriveAlert site launch
-- Basic product pages for OOONO P-DISC and CO-DRIVER
-- Amazon.de affiliate links (DE only)
-- Google Analytics (G-NX1B2429ZH)
+### Why canonical points to .eu
+Google Search Console confirmed .be correctly sends canonical to .eu.
+This prevents duplicate content penalty. Belgian visitors who land on .be
+see the full site; Google consolidates SEO juice to .eu. Correct behaviour.
 
 ---
 
-## Deployment notes
+## DEPLOY INSTRUCTIONS — READ EVERY TIME
 
-**Repos:**
-- drivealert → github.com/Caeseysolutions/drivealert (drivealert.eu)
-- drivealert.be → github.com/Caeseysolutions/drivealert.be
+### Files in this repo
+| File | Purpose | Touch? |
+|---|---|---|
+| index.html | BE site | YES — each version |
+| CHANGELOG.md | Version registry | YES — update before each deploy |
+| robots.txt | Search engine instructions | NO — never touch |
+| .nojekyll | GitHub Pages Jekyll bypass | NO — never touch |
+| sitemap.xml | Google index map | Only if pages added |
 
-**Affiliate tags:** DE=drivealert-21 · FR=drivealert0f-21 · NL=drivealert-nl-21 · UK=drivealert0a-21
-**Analytics:** G-NX1B2429ZH
+### How to deploy
+1. Go to: https://github.com/Caeseysolutions/drivealert.be
+2. Click: Add file → Upload files
+3. **Rename** drivealert_be_index_v1_02apr2026.html → **index.html** before uploading
+4. Upload: index.html + CHANGELOG.md (+ .nojekyll and robots.txt if first time)
+5. Commit message: see VERSION REGISTRY table above
+6. Commit directly to main — NEVER pencil editor for index.html
+
+### Relationship to drivealert.eu
+- .be and .eu share the same codebase
+- When .eu gets a new version → .be gets the same version with BE adaptations
+- Always update both repos together
+- Version numbers should stay in sync: .eu v6 = .be v1 (first proper deploy)
+
+### Current live version
+**v1** · deployed 2 April 2026 · 185 translation keys · BE-adapted from .eu v6
