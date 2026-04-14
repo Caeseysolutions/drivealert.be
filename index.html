@@ -851,17 +851,25 @@ footer{background:var(--bg);border-top:1px solid var(--border2);padding:3.5rem 0
    UK tag: drivealert0a-21
 ══════════════════════════════════════ */
 var affiliateLinks = {
-  pdisc:   { de:'https://amzn.to/4biaIeL', nl:'https://amzn.to/3Ng3ikt',  fr:'https://amzn.to/4uNY4NV', en:'https://amzn.to/4biaIeL' },
-  codriver:{ de:'https://amzn.to/4lomE3v', nl:'https://amzn.to/40yfakL',  fr:'https://amzn.to/4cTXiIF', en:'https://amzn.to/4lomE3v' },
-  nextbase:{ de:'https://amzn.to/470Ajb2', nl:'https://amzn.to/4se4Zyb',  fr:'https://amzn.to/3PDEvYb', en:'https://amzn.to/470Ajb2' }
+  pdisc:   { de:'https://amzn.to/4biaIeL', nl:'https://amzn.to/3Ng3ikt',  fr:'https://amzn.to/4uNY4NV', en:'https://amzn.to/4biaIeL', uk:'' },
+  codriver:{ de:'https://amzn.to/4lomE3v', nl:'https://amzn.to/40yfakL',  fr:'https://amzn.to/4cTXiIF', en:'https://amzn.to/4lomE3v', uk:'https://amzn.to/428K0Ba' },
+  nextbase:{ de:'https://amzn.to/470Ajb2', nl:'https://amzn.to/4se4Zyb',  fr:'https://amzn.to/3PDEvYb', en:'https://amzn.to/470Ajb2', uk:'https://amzn.to/48N1t5T' }
 };
 
 function updateAffiliateLinks(lang) {
   var l = affiliateLinks;
   var lk = lang || 'en';
+  var pdiscUrl = (l.pdisc[lk] !== undefined) ? l.pdisc[lk] : l.pdisc.en;
   ['pd-btn-link','cta-pdisc'].forEach(function(id){
     var el=document.getElementById(id);
-    if(el) el.href = (l.pdisc[lk]||l.pdisc.en);
+    if(el){
+      if(pdiscUrl){
+        el.href = pdiscUrl;
+        el.style.display='';
+      } else {
+        el.style.display='none';
+      }
+    }
   });
   ['co-btn-link','cta-co'].forEach(function(id){
     var el=document.getElementById(id);
@@ -966,7 +974,7 @@ function setLang(l){
   var browserLang=(navigator.language||'en').toLowerCase().slice(0,2);
   var browserMap={en:'en',nl:'nl',fr:'fr',de:'de'};
   var fallbackLang=browserMap[browserLang]||'en';
-  var geoMap={NL:'nl',BE:'nl',FR:'fr',GB:'en',IE:'en',DE:'de',AT:'de',CH:'de',LU:'fr'};
+  var geoMap={NL:'nl',BE:'nl',FR:'fr',GB:'uk',IE:'en',DE:'de',AT:'de',CH:'de',LU:'fr'};
   var done=false;
   var timer=setTimeout(function(){if(!done){done=true;setLang(fallbackLang);}},3000);
   fetch('https://ipapi.co/json/')
